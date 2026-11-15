@@ -1,0 +1,23 @@
+package project;
+
+public class AnsiColor {
+	
+	private final String cyan = "\u001B[36m"; // cyan
+	private final String yellow   = "\u001B[33m"; // yellow
+	private final String red = "\u001B[31m";
+	private final String green = "\u001B[32m";
+	
+	String Cyan() {
+		return cyan;
+	}
+	String Yellow() {
+		return yellow;
+	}
+	String Red() {
+		return red;
+	}
+	
+	String Green() {
+		return green;
+	}
+}
