@@ -1,6 +1,10 @@
 package project;
 
+import java.util.Scanner;
+
 public abstract class Screen {
+	
+	Scanner input = new Scanner(System.in);
 	
 	final String RESET  = "\u001B[0m";
 	

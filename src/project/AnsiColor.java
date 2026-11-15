@@ -6,6 +6,8 @@ public class AnsiColor {
 	private final String yellow   = "\u001B[33m"; // yellow
 	private final String red = "\u001B[31m";
 	private final String green = "\u001B[32m";
+	private final String white = "\u001B[97m";
+	private final String lightGreen = "\u001B[92m";
 	
 	String Cyan() {
 		return cyan;
@@ -19,5 +21,11 @@ public class AnsiColor {
 	
 	String Green() {
 		return green;
+	}
+	String White() {
+		return white;
+	}
+	String LightGreen() {
+		return lightGreen;
 	}
 }

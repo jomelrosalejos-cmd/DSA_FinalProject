@@ -1,15 +1,15 @@
 package project;
 
-import java.util.Scanner;
-
 public class MainMenuScreen extends Screen{
 	
 	AnsiColor color = new AnsiColor();
-	Scanner input = new Scanner(System.in);
 	
-	public MainMenuScreen() {
-		clear();
-		render();
+	void show() {
+		while(true) {
+			clear();
+			render();
+			handleInput();
+		}
 	}
 	
 	void render() {
@@ -34,16 +34,32 @@ public class MainMenuScreen extends Screen{
 	        System.out.println(color.Cyan() + "|" + color.Yellow() + padded + color.Cyan() + "|" + RESET);
 	    }
 	    System.out.println(edge);
-	    System.out.println(color.Red() + "**********************" + color.Green() + " FITNESS ASSESSMENT SYSTEM "
+	    System.out.println(color.Red() + "**********************" + color.LightGreen() + " FITNESS ASSESSMENT SYSTEM "
 	            + color.Red() + "***********************" + RESET);
 	    
 	    
-	    System.out.println("\n" + " ".repeat(25) + "[1] Start Assessment");
-	    System.out.println(" ".repeat(25) + "[2] Fitness Guidelines");
-	    System.out.println(" ".repeat(25) + "[3] Exit\n");
-	    
-	    System.out.print("Enter your choice: ");
-	    input.nextLine();
-	    
+	    System.out.println("\n" + " ".repeat(25) + color.Cyan() + "[1]" + color.White() +" Start Assessment");
+	    System.out.println(" ".repeat(25) + color.Cyan() + "[2]" + color.White() +" Fitness Guidelines");
+	    System.out.println(" ".repeat(25) + color.Cyan() + "[3]" + color.White() +" Exit\n");
 	}
+	
+	private void handleInput() {
+		System.out.print(color.LightGreen() + "Enter your choice: " + RESET);
+	    String choice = input.nextLine().trim();
+	    
+	    switch(choice) {
+	    case "1" -> new SelectAssessmentScreen();
+	    case "2" -> System.out.println("placeholder for guidelines");
+	    case "3" -> {
+	    	clear();
+	    	System.exit(0);
+	    }
+	    default -> {
+	    	System.out.println(color.Red() + "Invalid choice. Please enter 1, 2, or 3." + RESET);
+	    	System.out.print("Press Enter to continue...");
+            input.nextLine();
+	    }
+	    }
+	}
+	
 }
