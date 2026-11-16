@@ -2,7 +2,7 @@ package project;
 
 public class MainMenuScreen extends Screen{
 	
-	AnsiColor color = new AnsiColor();
+	AnsiFont color = new AnsiFont();
 	
 	void show() {
 		while(true) {
@@ -12,7 +12,7 @@ public class MainMenuScreen extends Screen{
 		}
 	}
 	
-	void render() {
+	private void render() {
 	    String[] art = {
 	        "    _          _                 _____ _ _",
 	        "   / \\   _ __ (_)_ __ ___   __ _|  ___(_) |_",
@@ -44,11 +44,11 @@ public class MainMenuScreen extends Screen{
 	}
 	
 	private void handleInput() {
-		System.out.print(color.LightGreen() + "Enter your choice: " + RESET);
+		System.out.print(color.LightGreen() + "Enter your choice: " + color.White());
 	    String choice = input.nextLine().trim();
 	    
 	    switch(choice) {
-	    case "1" -> new SelectAssessmentScreen();
+	    case "1" -> new PersonalInfoGather().show();
 	    case "2" -> System.out.println("placeholder for guidelines");
 	    case "3" -> {
 	    	clear();

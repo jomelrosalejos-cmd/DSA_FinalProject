@@ -1,6 +1,6 @@
 package project;
 
-public class AnsiColor {
+public class AnsiFont {
 	
 	private final String cyan = "\u001B[36m"; // cyan
 	private final String yellow   = "\u001B[33m"; // yellow
@@ -8,6 +8,7 @@ public class AnsiColor {
 	private final String green = "\u001B[32m";
 	private final String white = "\u001B[97m";
 	private final String lightGreen = "\u001B[92m";
+	private final String bold   = "\u001B[1m";
 	
 	String Cyan() {
 		return cyan;
@@ -27,5 +28,8 @@ public class AnsiColor {
 	}
 	String LightGreen() {
 		return lightGreen;
+	}
+	String Bold() {
+		return bold;
 	}
 }

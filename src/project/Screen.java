@@ -13,6 +13,6 @@ public abstract class Screen {
 		System.out.flush();
 	}
 	
-	abstract void render();
+	abstract void show();
 
 }
