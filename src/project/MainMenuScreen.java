@@ -2,8 +2,6 @@ package project;
 
 public class MainMenuScreen extends Screen{
 	
-	AnsiFont color = new AnsiFont();
-	
 	void show() {
 		while(true) {
 			clear();
@@ -12,7 +10,7 @@ public class MainMenuScreen extends Screen{
 		}
 	}
 	
-	private void render() {
+	void render() {
 	    String[] art = {
 	        "    _          _                 _____ _ _",
 	        "   / \\   _ __ (_)_ __ ___   __ _|  ___(_) |_",
@@ -26,25 +24,25 @@ public class MainMenuScreen extends Screen{
 	    for (String s : art) width = Math.max(width, s.length());
 	    int margin = (inner - width) / 2;
 
-	    String edge = color.Cyan() + "+" + "-".repeat(inner) + "+" + RESET;
+	    String edge = font.Cyan() + "+" + "-".repeat(inner) + "+" + RESET;
 
 	    System.out.println(edge);
 	    for (String s : art) {
 	        String padded = " ".repeat(margin) + s + " ".repeat(inner - margin - s.length());
-	        System.out.println(color.Cyan() + "|" + color.Yellow() + padded + color.Cyan() + "|" + RESET);
+	        System.out.println(font.Cyan() + "|" + font.Yellow() + padded + font.Cyan() + "|" + RESET);
 	    }
 	    System.out.println(edge);
-	    System.out.println(color.Red() + "**********************" + color.LightGreen() + " FITNESS ASSESSMENT SYSTEM "
-	            + color.Red() + "***********************" + RESET);
+	    System.out.println(font.Red() + "**********************" + font.LightGreen() + " FITNESS ASSESSMENT SYSTEM "
+	            + font.Red() + "***********************" + RESET);
 	    
 	    
-	    System.out.println("\n" + " ".repeat(25) + color.Cyan() + "[1]" + color.White() +" Start Assessment");
-	    System.out.println(" ".repeat(25) + color.Cyan() + "[2]" + color.White() +" Fitness Guidelines");
-	    System.out.println(" ".repeat(25) + color.Cyan() + "[3]" + color.White() +" Exit\n");
+	    System.out.println("\n" + " ".repeat(25) + font.Cyan() + "[1]" + font.White() +" Start Assessment");
+	    System.out.println(" ".repeat(25) + font.Cyan() + "[2]" + font.White() +" Fitness Guidelines");
+	    System.out.println(" ".repeat(25) + font.Cyan() + "[3]" + font.White() +" Exit\n");
 	}
 	
-	private void handleInput() {
-		System.out.print(color.LightGreen() + "Enter your choice: " + color.White());
+	void handleInput() {
+		System.out.print(font.LightGreen() + "Enter your choice: " + font.White());
 	    String choice = input.nextLine().trim();
 	    
 	    switch(choice) {
@@ -55,7 +53,7 @@ public class MainMenuScreen extends Screen{
 	    	System.exit(0);
 	    }
 	    default -> {
-	    	System.out.println(color.Red() + "Invalid choice. Please enter 1, 2, or 3." + RESET);
+	    	System.out.println(font.Red() + "Invalid choice. Please enter 1, 2, or 3." + RESET);
 	    	System.out.print("Press Enter to continue...");
             input.nextLine();
 	    }

@@ -11,25 +11,32 @@ public class AnsiFont {
 	private final String bold   = "\u001B[1m";
 	
 	String Cyan() {
+		System.out.print(cyan);
 		return cyan;
 	}
 	String Yellow() {
+		System.out.print(yellow);
 		return yellow;
 	}
 	String Red() {
+		System.out.print(red);
 		return red;
 	}
 	
 	String Green() {
+		System.out.print(green);
 		return green;
 	}
 	String White() {
+		System.out.print(white);
 		return white;
 	}
 	String LightGreen() {
+		System.out.print(lightGreen);
 		return lightGreen;
 	}
 	String Bold() {
+		System.out.print(bold);
 		return bold;
 	}
 }

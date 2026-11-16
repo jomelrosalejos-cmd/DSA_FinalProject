@@ -9,11 +9,11 @@ public class Person {
 	private double height;
 	private double weight;
 	
-	Person(String firstName, String lastName, int age, String sex, double weight, double height){
+	Person(String firstName, String lastName, String sex,  int age, double height, double weight){
 		this.firstName = firstName;
-		this.lastName = firstName;
-		this.age = age;
+		this.lastName = lastName;
 		this.sex = sex;
+		this.age = age;
 		this.height = height;
 		this.weight = weight;
 	}
