@@ -18,4 +18,8 @@ public class Person {
 		this.weight = weight;
 	}
 	
+	String getName() {
+		return firstName;
+	}
+	
 }

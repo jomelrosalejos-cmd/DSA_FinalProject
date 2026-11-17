@@ -2,14 +2,19 @@ package project;
 
 public class SelectAssessmentScreen extends Screen{
 	
-	SelectAssessmentScreen(){
-		
+	final String name;
+	
+	SelectAssessmentScreen(Person person){
+		this.name = person.getName();
 	}
 	
 	void show() {
-		clear();
-		render();
-		handleInput();
+		boolean done = false;
+		while(!done) {
+			clear();
+			render();
+			done = handleInput();
+		}
 	}
 
 	void render() {
@@ -23,7 +28,7 @@ public class SelectAssessmentScreen extends Screen{
 		System.out.println(font.Cyan() + "=".repeat(72));
 		
 		font.Yellow();
-		String greetings = "Welcome, " + "[name]";
+		String greetings = "Welcome, " + name;
 		centerText(greetings);
 		
 		font.White();
@@ -57,11 +62,24 @@ public class SelectAssessmentScreen extends Screen{
 		System.out.println(options[2].indent(20));
 	} 
 	
-	void handleInput() {
+	boolean handleInput() {
 		font.LightGreen();
 		System.out.print("\nEnter your choice: ");
 		font.White();
 		String choice = input.nextLine();
+		switch(choice) {
+		case "1" -> new PushUpScreen().show();
+		case "2" -> System.out.println("place holder");
+		case "3" -> System.out.println("place holder");
+		default ->  {
+			System.out.println(RESET + font.Red() + "Invalid choice. Please enter 1, 2, or 3." + RESET);
+			System.out.print("Press Enter to continue...");
+			input.nextLine();
+			return false;
+		}
+		}
+		
+		return true;
 	}
 	
 	void centerText(String text) {

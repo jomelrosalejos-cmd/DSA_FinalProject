@@ -4,9 +4,12 @@ public class PersonalInfoGather extends Screen {
 
 	@Override
 	void show() {
-		clear();
-		render();
-		handleInput();
+		boolean done = false;
+		while(!done) {
+			clear();
+			render();
+			done = handleInput();
+		}
 	}
 	
 	void render() {
@@ -20,10 +23,18 @@ public class PersonalInfoGather extends Screen {
 		System.out.println(font.Cyan() + "=".repeat(72));
 	}
 	
-	void handleInput() {
-		System.out.println(font.Red() + "Instruction: " + font.White() +
-				"Please fill this form as completely and \naccurately as possible.");
+	boolean handleInput() {
+		String instructions =
+				"""
+				Please fill this form as completely
+				and accurately as possible.
+				""";
 		
+		System.out.println(font.Red() + "\nInstruction: ");
+		font.White();
+		System.out.println(instructions.indent(4));
+		font.Cyan();
+		System.out.println("-".repeat(72));
 		System.out.print(font.LightGreen() + "\nFirst Name: " + font.White());
 		String firstName = input.nextLine().toUpperCase().trim();
 		
@@ -33,17 +44,32 @@ public class PersonalInfoGather extends Screen {
 		System.out.print(font.LightGreen() + "Sex (M/F): " + font.White());
 		String sex = input.nextLine();
 		
-		System.out.print(font.LightGreen() + "Age: " + font.White());
-		int age = Integer.parseInt(input.nextLine().trim());
+		int age = 0;
+		double height = 0;
+		double weight =0;
 		
-		System.out.print(font.LightGreen() + "Height (Meters): " + font.White());
-		double height = Double.parseDouble(input.nextLine().trim());
+		try {
+			System.out.print(font.LightGreen() + "Age: " + font.White());
+			age = Integer.parseInt(input.nextLine().trim());
+			
+			System.out.print(font.LightGreen() + "Height (Meters): " + font.White());
+			height = Double.parseDouble(input.nextLine().trim());
+			
+			System.out.print(font.LightGreen() + "Weight (kg): " + font.White());
+			weight = Double.parseDouble(input.nextLine().trim());
+		}
+		catch(NumberFormatException e) {
+			System.out.println(font.Red() + "Invalid input. Please enter whole numbers for\n"
+					+ "age and decimals for height and weight." + RESET);
+			System.out.print("Press Enter to continue...");
+			input.nextLine();
+			return false;
+		}
 		
-		System.out.print(font.LightGreen() + "Weight (kg): " + font.White());
-		double weight = Double.parseDouble(input.nextLine().trim());
-		
+		Person person = new Person(firstName, lastName, sex, age, height, weight);
 		//temporary code
-		new SelectAssessmentScreen().show();
+		new SelectAssessmentScreen(person).show();
+		return true;
 	}
 
 }
