@@ -1,6 +1,6 @@
 package project;
 
-public class SquatScreen extends Screen {
+public class SquatScreen extends ExerciseScreen {
 
 	static final int MAX_REPS = 200;
 
@@ -112,10 +112,10 @@ public class SquatScreen extends Screen {
 
 		switch(choice) {
 		case "1" -> {
-			// TODO: replace with new StrengthAnalysisScreen().show();
-			System.out.println(font.Yellow() + "placeholder for strength analysis" + RESET);
-			System.out.print("Press Enter to continue...");
+			System.out.println(font.Yellow() + "Workout stopped. Every beast needs rest sometimes!" + RESET);
+			System.out.print("Press Enter to return to the main menu...");
 			input.nextLine();
+			stopped = true;
 			return true;
 		}
 		default -> {

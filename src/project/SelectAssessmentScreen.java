@@ -68,8 +68,8 @@ public class SelectAssessmentScreen extends Screen{
 		font.White();
 		String choice = input.nextLine();
 		switch(choice) {
-		case "1" -> new PushUpScreen().show();
-		case "2" -> System.out.println("place holder");
+		case "1" -> choice = "1";
+		case "2" -> choice = "2";
 		case "3" -> System.out.println("place holder");
 		default ->  {
 			System.out.println(RESET + font.Red() + "Invalid choice. Please enter 1, 2, or 3." + RESET);
@@ -79,6 +79,7 @@ public class SelectAssessmentScreen extends Screen{
 		}
 		}
 		
+		new AssessmentRunner(choice).start();
 		return true;
 	}
 	

@@ -1,6 +1,6 @@
 package project;
 
-public class PushUpScreen extends Screen {
+public class PushUpScreen extends ExerciseScreen {
 
 	static final int MAX_REPS = 200;
 
@@ -111,14 +111,13 @@ public class PushUpScreen extends Screen {
 
 		switch(choice) {
 		case "1" -> {
-			new SitUpScreen().show();
 			return true;
 		}
 		case "2" -> {
-			// placeholder message, the group decides the final wording
 			System.out.println(font.Yellow() + "Workout stopped. Every beast needs rest sometimes!" + RESET);
 			System.out.print("Press Enter to return to the main menu...");
 			input.nextLine();
+			stopped = true;
 			return true;
 		}
 		default -> {
