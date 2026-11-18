@@ -67,8 +67,8 @@ public class PersonalInfoGather extends Screen {
 		}
 		
 		Person person = new Person(firstName, lastName, sex, age, height, weight);
-		//temporary code
-		new SelectAssessmentScreen(person).show();
+		Session session = new Session(person);
+		new SelectAssessmentScreen(session).show();
 		return true;
 	}
 

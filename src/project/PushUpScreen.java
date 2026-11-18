@@ -5,11 +5,16 @@ public class PushUpScreen extends ExerciseScreen {
 	static final int MAX_REPS = 200;
 
 	int reps;
+	
+	Session session;
+	
+	PushUpScreen(Session session){
+		this.session = session;
+	}
 
-	// placeholder results (design only)
-	int score = 100;
-	String animal = "GORILLA ARMS";
-	String level = "ADVANCED";
+	int score;
+	String animal;
+	String level;
 
 	void show() {
 		clear();
@@ -18,6 +23,12 @@ public class PushUpScreen extends ExerciseScreen {
 
 		clear();
 		reps = askReps();
+		
+		ScoringService scoring = new ScoringService(session.person, "PUSH_UPS");
+		score = (int) scoring.getScore(reps);
+		animal = new AnimalMapper().getAnimal("PUSH_UPS", score);
+		level = scoring.getLevel(score);
+		session.addResult(new Result("PUSH_UPS", "STRENGTH", reps, score, animal, level));
 
 		clear();
 		renderProcessing();

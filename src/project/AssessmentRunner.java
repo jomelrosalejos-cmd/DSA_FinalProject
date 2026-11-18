@@ -7,9 +7,12 @@ public class AssessmentRunner {
 
 	boolean includeStrength;
 	boolean includeCardio;
+	
+	Session session;
 
 	// choice is the menu number from SelectAssessmentScreen: 1 strength, 2 cardio, 3 both
-	AssessmentRunner(String choice) {
+	AssessmentRunner(String choice, Session session) {
+		this.session = session;
 		switch(choice) {
 		case "1" -> includeStrength = true;
 		case "2" -> includeCardio = true;
@@ -40,17 +43,17 @@ public class AssessmentRunner {
 	// the order of the exercises is decided here and nowhere else
 	Queue<ExerciseScreen> strengthQueue() {
 		Queue<ExerciseScreen> queue = new LinkedList<>();
-		queue.add(new PushUpScreen());
-		queue.add(new SitUpScreen());
-		queue.add(new SquatScreen());
+		queue.add(new PushUpScreen(session));
+		queue.add(new SitUpScreen(session));
+		queue.add(new SquatScreen(session));
 		return queue;
 	}
 
 	Queue<ExerciseScreen> cardioQueue() {
 		Queue<ExerciseScreen> queue = new LinkedList<>();
-		queue.add(new JumpingJacksScreen());
-		queue.add(new HighKneesScreen());
-		queue.add(new MountainClimbersScreen());
+		queue.add(new JumpingJacksScreen(session));
+		queue.add(new HighKneesScreen(session));
+		queue.add(new MountainClimbersScreen(session));
 		return queue;
 	}
 
@@ -69,19 +72,11 @@ public class AssessmentRunner {
 	}
 
 	void showStrengthAnalysis() {
-		// TODO: replace with new StrengthAnalysisScreen().show();
-		showPlaceholder("strength analysis");
+		new StrengthAnalysisScreen().show();
 	}
 
 	void showCardioAnalysis() {
-		// TODO: replace with new CardioAnalysisScreen().show();
-		showPlaceholder("cardio analysis");
-	}
-
-	void showPlaceholder(String name) {
-		System.out.println("placeholder for " + name);
-		System.out.print("Press Enter to continue...");
-		Screen.input.nextLine();
+		new CardioAnalysisScreen().show();
 	}
 
 }

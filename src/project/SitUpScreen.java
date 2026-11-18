@@ -5,11 +5,16 @@ public class SitUpScreen extends ExerciseScreen {
 	static final int MAX_REPS = 200;
 
 	int reps;
+	
+	Session session;
+	
+	SitUpScreen(Session session){
+		this.session = session;
+	}
 
-	// placeholder results (design only), replace with the real scoring later
-	int score = 100;
-	String animal = "CROCODILE CORE";
-	String level = "ADVANCED";
+	int score;
+	String animal;
+	String level;
 
 	void show() {
 		clear();
@@ -18,6 +23,12 @@ public class SitUpScreen extends ExerciseScreen {
 
 		clear();
 		reps = askReps();
+		
+		ScoringService scoring = new ScoringService(session.person, "SIT_UPS");
+		score = (int) scoring.getScore(reps);
+		animal = new AnimalMapper().getAnimal("SIT_UPS", score);
+		level = scoring.getLevel(score);
+		session.addResult(new Result("SIT_UPS", "STRENGTH", reps, score, animal, level));
 
 		clear();
 		renderProcessing();

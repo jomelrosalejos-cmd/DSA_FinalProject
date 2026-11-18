@@ -3,9 +3,11 @@ package project;
 public class SelectAssessmentScreen extends Screen{
 	
 	final String name;
+	Session session;
 	
-	SelectAssessmentScreen(Person person){
-		this.name = person.getName();
+	SelectAssessmentScreen(Session session){
+		this.name = session.person.getName();
+		this.session = session;
 	}
 	
 	void show() {
@@ -79,7 +81,7 @@ public class SelectAssessmentScreen extends Screen{
 		}
 		}
 		
-		new AssessmentRunner(choice).start();
+		new AssessmentRunner(choice, session).start();
 		return true;
 	}
 	

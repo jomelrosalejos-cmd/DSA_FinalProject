@@ -5,11 +5,17 @@ public class HighKneesScreen extends ExerciseScreen {
 	static final int MAX_REPS = 300;
 
 	int reps;
+	
+	Session session;
+	
+	HighKneesScreen(Session session){
+		this.session = session;
+	}
 
 	int target = 80;
-	int score = 75;
-	String animal = "WOLF STAMINA";
-	String level = "ADVANCED";
+	int score;
+	String animal;
+	String level;
 
 	void show() {
 		clear();
@@ -18,6 +24,12 @@ public class HighKneesScreen extends ExerciseScreen {
 
 		clear();
 		reps = askReps();
+		
+		ScoringService scoring = new ScoringService(session.person, "HIGH_KNEES");
+		score = (int) scoring.getScore(reps);
+		animal = new AnimalMapper().getAnimal("HIGH_KNEES", score);
+		level = scoring.getLevel(score);
+		session.addResult(new Result("HIGH_KNEES", "CARDIO", reps, score, animal, level));
 
 		clear();
 		renderProcessing();
@@ -60,7 +72,7 @@ public class HighKneesScreen extends ExerciseScreen {
 	void renderTestCompleted() {
 		printHeader("TEST COMPLETED!", "");
 		font.White();
-		System.out.println("\nEnter the number of push-ups you completed." + RESET);
+		System.out.println("\nEnter the number of high knees you completed." + RESET);
 	}
 
 	int askReps() {

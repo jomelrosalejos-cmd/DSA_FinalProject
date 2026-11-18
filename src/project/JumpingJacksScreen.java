@@ -5,12 +5,18 @@ public class JumpingJacksScreen extends ExerciseScreen {
 	static final int MAX_REPS = 200;
 
 	int reps;
+	
+	Session session;
+	
+	JumpingJacksScreen(Session session){
+		this.session = session;
+	}
 
 
 	int target = 50;
-	int score = 90;
-	String animal = "STALLION ENDURANCE";
-	String level = "ADVANCED";
+	int score;
+	String animal;
+	String level;
 
 	void show() {
 		clear();
@@ -19,6 +25,12 @@ public class JumpingJacksScreen extends ExerciseScreen {
 
 		clear();
 		reps = askReps();
+		
+		ScoringService scoring = new ScoringService(session.person, "JUMPING_JACKS");
+		score = (int) scoring.getScore(reps);
+		animal = new AnimalMapper().getAnimal("JUMPING_JACKS", score);
+		level = scoring.getLevel(score);
+		session.addResult(new Result("JUMPING_JACKS", "CARDIO", reps, score, animal, level));
 
 		clear();
 		renderProcessing();
@@ -61,7 +73,7 @@ public class JumpingJacksScreen extends ExerciseScreen {
 	void renderTestCompleted() {
 		printHeader("TEST COMPLETED!", "");
 		font.White();
-		System.out.println("\nEnter the number of push-ups you completed." + RESET);
+		System.out.println("\nEnter the number of jumping-jacks you completed." + RESET);
 	}
 
 	int askReps() {

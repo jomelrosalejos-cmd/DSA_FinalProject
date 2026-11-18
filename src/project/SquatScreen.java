@@ -5,12 +5,16 @@ public class SquatScreen extends ExerciseScreen {
 	static final int MAX_REPS = 200;
 
 	int reps;
-
-	// placeholder results (design only), replace with the real scoring later
-	double score = 20;
-	String animal = "CHICKEN LEGS";
-	String level = "DEVELOPING";
 	
+	Session session;
+	
+	SquatScreen(Session session){
+		this.session = session;
+	}
+
+	int score;
+	String animal;
+	String level;
 
 	void show() {
 		clear();
@@ -20,6 +24,11 @@ public class SquatScreen extends ExerciseScreen {
 		clear();
 		reps = askReps();
 		
+		ScoringService scoring = new ScoringService(session.person, "SQUATS");
+		score = (int) scoring.getScore(reps);
+		animal = new AnimalMapper().getAnimal("SQUATS", score);
+		level = scoring.getLevel(score);
+		session.addResult(new Result("SQUATS", "STRENGTH", reps, score, animal, level));
 
 		clear();
 		renderProcessing();
@@ -60,7 +69,7 @@ public class SquatScreen extends ExerciseScreen {
 	void renderTestCompleted() {
 		printHeader("TEST COMPLETED!", "");
 		font.White();
-		System.out.println("\nEnter the number of sit-ups you completed." + RESET);
+		System.out.println("\nEnter the number of squats you completed." + RESET);
 	}
 
 	int askReps() {
@@ -112,14 +121,10 @@ public class SquatScreen extends ExerciseScreen {
 
 		switch(choice) {
 		case "1" -> {
-			System.out.println(font.Yellow() + "Workout stopped. Every beast needs rest sometimes!" + RESET);
-			System.out.print("Press Enter to return to the main menu...");
-			input.nextLine();
-			stopped = true;
 			return true;
 		}
 		default -> {
-			System.out.println(font.Red() + "Invalid choice. Please enter 1." + RESET);
+			System.out.println(font.Red() + "Invalid choice. Please enter 1 or 2." + RESET);
 			System.out.print("Press Enter to continue...");
 			input.nextLine();
 			return false;

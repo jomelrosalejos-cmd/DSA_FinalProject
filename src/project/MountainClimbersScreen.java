@@ -5,12 +5,17 @@ public class MountainClimbersScreen extends ExerciseScreen {
 	static final int MAX_REPS = 200;
 
 	int reps;
+	Session session;
+	
+	MountainClimbersScreen(Session session){
+		this.session = session;
+	}
 
 	// placeholder results (design only), replace with the real scoring later
 	int target = 40;
-	int score = 75;
-	String animal = "MOUNTAIN GOAT ENDURANCE";
-	String level = "ADVANCED";
+	int score;
+	String animal;
+	String level;
 
 	void show() {
 		clear();
@@ -19,6 +24,12 @@ public class MountainClimbersScreen extends ExerciseScreen {
 
 		clear();
 		reps = askReps();
+		
+		ScoringService scoring = new ScoringService(session.person, "MOUNTAIN_CLIMBERS");
+		score = (int) scoring.getScore(reps);
+		animal = new AnimalMapper().getAnimal("MOUNTAIN_CLIMBERS", score);
+		level = scoring.getLevel(score);
+		session.addResult(new Result("MOUNTAIN_CLIMBERS", "CARDIO", reps, score, animal, level));
 
 		clear();
 		renderProcessing();
@@ -62,7 +73,7 @@ public class MountainClimbersScreen extends ExerciseScreen {
 	void renderTestCompleted() {
 		printHeader("TEST COMPLETED!", "");
 		font.White();
-		System.out.println("\nEnter the number of push-ups you completed." + RESET);
+		System.out.println("\nEnter the number of mountain climbers you completed." + RESET);
 	}
 
 	int askReps() {

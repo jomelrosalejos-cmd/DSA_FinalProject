@@ -22,4 +22,18 @@ public class Person {
 		return firstName;
 	}
 	
+	String getLastName() {
+		return lastName;
+	}
+	
+	String getSex() {
+		return sex;
+	}
+	
+	int getAge() {
+		return age;
+	}
+	
+	
+	
 }
