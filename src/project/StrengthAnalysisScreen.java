@@ -1,11 +1,21 @@
 package project;
 
+import java.util.List;
+
 public class StrengthAnalysisScreen extends Screen {
 
-	// placeholder results (design only)
-	String upperAnimal = "GORILLA ARMS";
-	String coreAnimal = "CROCODILE CORE";
-	String lowerAnimal = "CHICKEN LEGS";
+	String upperAnimal;
+	String coreAnimal;
+	String lowerAnimal;
+	
+	Session session;
+	
+	StrengthAnalysisScreen(Session session){
+		List<Result> results = session.getStrengthResults();
+		upperAnimal = results.get(0).animal;
+		coreAnimal = results.get(1).animal;
+		lowerAnimal = results.get(2).animal;
+	}
 
 	void show() {
 		clear();
@@ -16,45 +26,38 @@ public class StrengthAnalysisScreen extends Screen {
 	void render() {
 		printHeader("ANALYSIS");
 
-		System.out.println(font.Red() + "PERSONALIZED COMMENT:" + RESET);
 		String comment = """
-				You've got arms like a GORILLA, a core like a
-				CROCODILE, but legs like a CHICKEN!
-				""";
+				You've got arms like a %s, a core like a
+				%s, but legs like a %s!
+				""".formatted(
+						upperAnimal.substring(0,upperAnimal.indexOf(" ")),
+						coreAnimal.substring(0,coreAnimal.indexOf(" ")),
+						lowerAnimal.substring(0,lowerAnimal.indexOf(" ")));
+		
+		
+
+		System.out.println(font.Red() + "SYSTEM NOTES:" + RESET);
 		font.Yellow();
-		System.out.println(comment.indent(4) + RESET);
-
-		String detail = 
-				"""
-				Your upper body and core are impressive, but your
-				lower body seems to have missed the training session.
-				""";
-		font.White();
-		System.out.print(detail.indent(4) + RESET);
-
-		System.out.println(font.Cyan() + "-".repeat(72) + RESET);
-
-		System.out.println("\n" + font.Red() + "SYSTEM NOTES:" + RESET);
-		printNote(upperAnimal, """
-				Your upper-body performance is outstanding.
-				Keep those arms strong!
+		System.out.println(comment + RESET);
+		printNote("PUSH-UPS - " + upperAnimal, """
+				
+				
 				""");
-		printNote(coreAnimal, """
-				Your core shows excellent endurance and stability.
+		printNote("SIT-UPS - " + coreAnimal, """
+				
+				
 				""");
-		printNote(lowerAnimal, """
-				Your legs need serious attention. Don't let your
-				upper body do all the work!
+		printNote("SQUATS - " + lowerAnimal, """
+				
+				
 				""");
 
 		System.out.println(font.Cyan() + "-".repeat(72) + RESET);
 
 		System.out.println(font.Red() + "OVERALL COMMENT:" + RESET);
 		String overall = """
-				Overall, you've been doing great! Don't forget to stay consistent,
-				trust your progress, and be easy on yourself. Remember, improvement
-				takes time. Keep showing up, keep pushing forward, and don't forget
-				to give yourself credit for how far you've come. Every step counts!
+				A true beast never stops evolving!
+				Keep training, stay consistent, and ARISE!
 				""";
 		font.Yellow();
 		System.out.print(overall.indent(4) + RESET);
@@ -69,8 +72,8 @@ public class StrengthAnalysisScreen extends Screen {
 		System.out.print(RESET);
 	}
 
-	void printNote(String animal, String text) {
-		System.out.println(font.LightGreen() + "* " + animal + RESET);
+	void printNote(String title, String text) {
+		System.out.println(font.LightGreen() + "[" + title + "]" + RESET);
 		font.White();
 		System.out.println(text.indent(4) + RESET);
 	}

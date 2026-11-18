@@ -1,11 +1,20 @@
 package project;
 
+import java.util.List;
+
 public class CardioAnalysisScreen extends Screen {
 
-	// placeholder results (design only)
-	String jacksAnimal = "STALLION";
-	String kneesAnimal = "WOLF";
-	String climbersAnimal = "MOUNTAIN GOAT";
+	String jacksAnimal;
+	String kneesAnimal;
+	String climbersAnimal;
+	
+	
+	CardioAnalysisScreen(Session session){
+		List<Result> results = session.getCardioResults();
+		jacksAnimal = results.get(0).animal;
+		kneesAnimal = results.get(1).animal;
+		climbersAnimal = results.get(2).animal;
+	}
 
 	void show() {
 		clear();
@@ -16,35 +25,28 @@ public class CardioAnalysisScreen extends Screen {
 	void render() {
 		printHeader("ANALYSIS");
 
-		System.out.println(font.Red() + "PERSONALIZED COMMENT:" + RESET);
 		String comment = """
-				You've got the speed of a STALLION, the stamina
-				of a WOLF, and the endurance of a MOUNTAIN GOAT!
-				""";
+				You've got the speed of a %s, the stamina
+				of a %s, and the endurance of a %s!
+				""".formatted(
+						jacksAnimal.substring(0,jacksAnimal.indexOf(" ")),
+						kneesAnimal.substring(0,kneesAnimal.indexOf(" ")),
+						climbersAnimal.substring(0,climbersAnimal.indexOf(" ")));
+
+		System.out.println(font.Red() + "SYSTEM NOTES:" + RESET);
 		font.Yellow();
-		System.out.println(comment.indent(4) + RESET);
-
-		String detail = """
-				Your cardio performance is impressive, but there's
-				still room to improve your endurance and consistency.
-				""";
-		font.White();
-		System.out.print(detail.indent(4) + RESET);
-
-		System.out.println(font.Cyan() + "-".repeat(72) + RESET);
-
-		System.out.println("\n" + font.Red() + "SYSTEM NOTES:" + RESET);
+		System.out.println(comment+ RESET);
 		printNote("JUMPING JACKS - " + jacksAnimal, """
-				Your performance is outstanding! Keep that rhythm
-				and coordination strong!
+				
+				
 				""");
 		printNote("HIGH KNEES - " + kneesAnimal, """
-				Your stamina is developing well. Keep improving
-				your speed and consistency!
+				
+				
 				""");
 		printNote("MOUNTAIN CLIMBERS - " + climbersAnimal, """
-				Your endurance is good, but continue improving
-				your core stability and pacing!
+				
+				
 				""");
 
 		System.out.println(font.Cyan() + "-".repeat(72) + RESET);

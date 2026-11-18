@@ -72,11 +72,11 @@ public class AssessmentRunner {
 	}
 
 	void showStrengthAnalysis() {
-		new StrengthAnalysisScreen().show();
+		new StrengthAnalysisScreen(session).show();
 	}
 
 	void showCardioAnalysis() {
-		new CardioAnalysisScreen().show();
+		new CardioAnalysisScreen(session).show();
 	}
 
 }
