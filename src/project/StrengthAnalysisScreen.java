@@ -7,6 +7,10 @@ public class StrengthAnalysisScreen extends Screen {
 	String upperAnimal;
 	String coreAnimal;
 	String lowerAnimal;
+	String name;
+	int age;
+	double height;
+	double weight;
 	
 	Session session;
 	
@@ -15,6 +19,10 @@ public class StrengthAnalysisScreen extends Screen {
 		upperAnimal = results.get(0).animal;
 		coreAnimal = results.get(1).animal;
 		lowerAnimal = results.get(2).animal;
+		this.name = session.person.getName() + " " +session.person.getLastName();
+		this.height = session.person.getHeight();
+		this.weight = session.person.getWeight();
+		this.age = session.person.getAge();
 	}
 
 	void show() {
@@ -22,9 +30,41 @@ public class StrengthAnalysisScreen extends Screen {
 		render();
 		handleInput();
 	}
+	
+	String getBMI(double weight, double height) {
+		double bmi = weight / Math.pow(height, 2);
+		String bmiStr = "%.2f - ".formatted(bmi);
+		return bmiStr + getBmiCategory(bmi);
+	}
+	
+	public static String getBmiCategory(double bmi) {
+	        if (bmi < 18.5) {
+	            return "Underweight";
+	        } else if (bmi < 25.0) {
+	            return "Normal weight";
+	        } else if (bmi < 30.0) {
+	            return "Overweight";
+	        } else {
+	            return "Obese";
+	        }
+	}
+
+	void displayInfo() {
+		System.out.print(RESET);
+		font.Cyan();
+		System.out.println("-".repeat(72));
+		System.out.println(font.LightGreen() + "Name: " + font.White()+name);
+		System.out.println(font.LightGreen() + "Age: "+ font.White()+age);
+		System.out.println(font.LightGreen() + "Height: "+ font.White()+height + "m");
+		System.out.println(font.LightGreen() + "Weight: "+ font.White()+weight + "kg");
+		System.out.println(font.LightGreen() + "BMI: "+ font.White()+getBMI(weight, height));
+		font.Cyan();
+		System.out.println("-".repeat(72));
+		System.out.print(RESET);
+	}
 
 	void render() {
-		printHeader("ANALYSIS");
+		printHeader("OVERALL");
 
 		String comment = """
 				You've got arms like a %s, a core like a
@@ -39,18 +79,10 @@ public class StrengthAnalysisScreen extends Screen {
 		System.out.println(font.Red() + "SYSTEM NOTES:" + RESET);
 		font.Yellow();
 		System.out.println(comment + RESET);
-		printNote("PUSH-UPS - " + upperAnimal, """
-				
-				
-				""");
-		printNote("SIT-UPS - " + coreAnimal, """
-				
-				
-				""");
-		printNote("SQUATS - " + lowerAnimal, """
-				
-				
-				""");
+		displayInfo();
+		printNote("PUSH-UPS - " + upperAnimal, animalArt.getAnimalAscii(upperAnimal.substring(0,upperAnimal.indexOf(" "))));
+		printNote("SIT-UPS - " + coreAnimal, animalArt.getAnimalAscii(coreAnimal.substring(0,coreAnimal.indexOf(" "))));
+		printNote("SQUATS - " + lowerAnimal, animalArt.getAnimalAscii(lowerAnimal.substring(0,lowerAnimal.indexOf(" "))));
 
 		System.out.println(font.Cyan() + "-".repeat(72) + RESET);
 

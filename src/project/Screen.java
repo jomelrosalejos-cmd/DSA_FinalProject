@@ -6,6 +6,7 @@ public abstract class Screen {
 	
 	static Scanner input = new Scanner(System.in);
 	static AnsiFont font = new AnsiFont();
+	static AnimalAsciiArt animalArt = new AnimalAsciiArt();
 	
 	final String RESET  = "\u001B[0m";
 	

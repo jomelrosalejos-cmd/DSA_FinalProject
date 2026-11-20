@@ -34,6 +34,12 @@ public class Person {
 		return age;
 	}
 	
+	double getHeight() {
+		return height;
+	}
 	
+	double getWeight() {
+		return weight;
+	}
 	
 }
