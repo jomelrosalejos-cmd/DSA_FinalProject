@@ -21,6 +21,8 @@ public class HighKneesScreen extends ExerciseScreen {
 		clear();
 		render();
 		handleInput();
+		
+		runTimer("HIGH KNEES");
 
 		clear();
 		reps = askReps();

@@ -20,6 +20,8 @@ public class SitUpScreen extends ExerciseScreen {
 		clear();
 		render();
 		handleInput();
+		
+		runTimer("SIT-UP");
 
 		clear();
 		reps = askReps();

@@ -22,6 +22,8 @@ public class JumpingJacksScreen extends ExerciseScreen {
 		clear();
 		render();
 		handleInput();
+		
+		runTimer("JUMPING JACKS");
 
 		clear();
 		reps = askReps();

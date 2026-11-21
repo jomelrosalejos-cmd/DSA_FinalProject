@@ -20,6 +20,8 @@ public class SquatScreen extends ExerciseScreen {
 		clear();
 		render();
 		handleInput();
+		
+		runTimer("SQUAT");
 
 		clear();
 		reps = askReps();

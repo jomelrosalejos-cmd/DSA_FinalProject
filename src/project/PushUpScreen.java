@@ -20,6 +20,8 @@ public class PushUpScreen extends ExerciseScreen {
 		clear();
 		render();
 		handleInput();
+		
+		runTimer("PUSH-UP");
 
 		clear();
 		reps = askReps();
@@ -75,7 +77,6 @@ public class PushUpScreen extends ExerciseScreen {
 	int askReps() {
 		while(true) {
 			renderTestCompleted();
-			
 			System.out.print(font.LightGreen() + "Number of Repetitions: " + font.White());
 			String raw = input.nextLine().trim();
 

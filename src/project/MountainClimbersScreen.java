@@ -21,6 +21,8 @@ public class MountainClimbersScreen extends ExerciseScreen {
 		clear();
 		render();
 		handleInput();
+		
+		runTimer("MOUNTAIN CLIMBERS");
 
 		clear();
 		reps = askReps();
