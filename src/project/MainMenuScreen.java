@@ -37,7 +37,7 @@ public class MainMenuScreen extends Screen{
 	    
 	    
 	    System.out.println("\n" + " ".repeat(25) + font.Cyan() + "[1]" + font.White() +" Start Assessment");
-	    System.out.println(" ".repeat(25) + font.Cyan() + "[2]" + font.White() +" Fitness Guidelines");
+	    System.out.println(" ".repeat(25) + font.Cyan() + "[2]" + font.White() +" History");
 	    System.out.println(" ".repeat(25) + font.Cyan() + "[3]" + font.White() +" Exit\n");
 	}
 	
@@ -47,7 +47,7 @@ public class MainMenuScreen extends Screen{
 	    
 	    switch(choice) {
 	    case "1" -> new PersonalInfoGather().show();
-	    case "2" -> System.out.println("placeholder for guidelines");
+	    case "2" -> new History().show();
 	    case "3" -> {
 	    	clear();
 	    	System.exit(0);

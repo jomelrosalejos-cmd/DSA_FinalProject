@@ -35,14 +35,34 @@ public class PersonalInfoGather extends Screen {
 		System.out.println(instructions.indent(4));
 		font.Cyan();
 		System.out.println("-".repeat(72));
+		
 		System.out.print(font.LightGreen() + "\nFirst Name: " + font.White());
 		String firstName = input.nextLine().toUpperCase().trim();
+		if(firstName.length() > 25 || firstName.length() < 2) {
+			System.out.println(font.Red() + "Invalid name. Use 2 to 25 letters" + RESET);
+			System.out.print("Press Enter to continue...");
+			input.nextLine();
+			return false;
+		}
 		
 		System.out.print(font.LightGreen() + "Last Name: " + font.White());
 		String lastName = input.nextLine().toUpperCase().trim();
+		if(lastName.length() > 25 || firstName.length() < 2) {
+			System.out.println(font.Red() + "Invalid name. Use 2 to 25 letters" + RESET);
+			System.out.print("Press Enter to continue...");
+			input.nextLine();
+			return false;
+		}
 		
 		System.out.print(font.LightGreen() + "Sex (M/F): " + font.White());
-		String sex = input.nextLine();
+		String sex = input.nextLine().toUpperCase().trim();
+		
+		if(!sex.equals("M") && !sex.equals("F")) {
+			System.out.println(font.Red() + "Invalid input. Enter M for male or F for female." + RESET);
+			System.out.print("Press Enter to continue...");
+			input.nextLine();
+			return false;
+		}
 		
 		int age = 0;
 		double height = 0;
@@ -68,6 +88,7 @@ public class PersonalInfoGather extends Screen {
 		
 		Person person = new Person(firstName, lastName, sex, age, height, weight);
 		Session session = new Session(person);
+		History.add(session);
 		new SelectAssessmentScreen(session).show();
 		return true;
 	}
