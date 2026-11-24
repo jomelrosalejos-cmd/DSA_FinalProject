@@ -1,6 +1,6 @@
 package project;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class AssessmentRunner {
@@ -40,9 +40,9 @@ public class AssessmentRunner {
 		}
 	}
 
-	// the order of the exercises is decided here and nowhere else
+	// the order of the exercises is decided here
 	Queue<ExerciseScreen> strengthQueue() {
-		Queue<ExerciseScreen> queue = new LinkedList<>();
+		Queue<ExerciseScreen> queue = new ArrayDeque<>();
 		queue.add(new PushUpScreen(session));
 		queue.add(new SitUpScreen(session));
 		queue.add(new SquatScreen(session));
@@ -50,7 +50,7 @@ public class AssessmentRunner {
 	}
 
 	Queue<ExerciseScreen> cardioQueue() {
-		Queue<ExerciseScreen> queue = new LinkedList<>();
+		Queue<ExerciseScreen> queue = new ArrayDeque<>();
 		queue.add(new JumpingJacksScreen(session));
 		queue.add(new HighKneesScreen(session));
 		queue.add(new MountainClimbersScreen(session));

@@ -38,7 +38,7 @@ public class PersonalInfoGather extends Screen {
 		
 		System.out.print(font.LightGreen() + "\nFirst Name: " + font.White());
 		String firstName = input.nextLine().toUpperCase().trim();
-		if(firstName.length() > 25 || firstName.length() < 2) {
+		if(firstName.length() > 25 || firstName.length() < 2 || firstName.isEmpty()) {
 			System.out.println(font.Red() + "Invalid name. Use 2 to 25 letters" + RESET);
 			System.out.print("Press Enter to continue...");
 			input.nextLine();
@@ -47,7 +47,7 @@ public class PersonalInfoGather extends Screen {
 		
 		System.out.print(font.LightGreen() + "Last Name: " + font.White());
 		String lastName = input.nextLine().toUpperCase().trim();
-		if(lastName.length() > 25 || firstName.length() < 2) {
+		if(lastName.length() > 25 || lastName.length() < 2 || lastName.isEmpty()) {
 			System.out.println(font.Red() + "Invalid name. Use 2 to 25 letters" + RESET);
 			System.out.print("Press Enter to continue...");
 			input.nextLine();
